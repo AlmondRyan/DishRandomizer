@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dishes>
+    <instance>
+        <name>西红柿炒鸡蛋</name>
+        <note>单人份</note>
+        <ingredients>
+            <ingredient count="2" unit="个">鸡蛋</ingredient>
+            <ingredient count="1" unit="个">西红柿</ingredient>
+            <ingredient count="适量" optional="true">葱花</ingredient>
+        </ingredients>
+        <spices>
+            <spice count="1" unit="克" note="根据个人口味调整">盐</spice>
+            <spice note="根据个人口味调整">油</spice>
+            <spice note="根据个人口味调整">生抽</spice>
+            <spice optional="true">糖</spice>
+        </spices>
+        <steps>
+            <zone id="1" text="准备材料">
+                <step id="1" text="把鸡蛋打入碗中" />
+                <step id="2" text="把西红柿洗净后，切成小块后备用" />
+                <step id="3" text="若准备葱花，请把葱花切开" />
+            </zone>
+
+            <zone id="2" text="制作">
+                <step id="4" text="锅里烧油，先放一点油润锅" />
+                <step id="5" text="当油烧热后，将鸡蛋放到锅里做熟" />
+                <step id="6" text="当鸡蛋熟后，在锅里放入西红柿，放盐翻炒均匀" />
+                <step id="7" text="放入生抽上色" />
+                <step id="8" text="若准备了糖，请现在将糖放入锅中" />
+                <step id="9" text="若准备了葱花，请将葱花放入锅中翻炒均匀" />
+            </zone>
+        </steps>
+    </instance>
+
+    <instance>
+        <name>青椒土豆丝</name>
+        <note>单人份</note>
+        <ingredients>
+            <ingredient count="1" unit="个">中等大小土豆</ingredient>
+            <ingredient count="1/2" unit="个">青椒</ingredient>
+            <ingredient count="适量" optional="true">葱花</ingredient>
+        </ingredients>
+        <spices>
+            <spice count="1/4" unit="茶匙" note="根据个人口味调整">盐</spice>
+            <spice count="1/4" unit="茶匙" note="根据个人口味调整">白醋或米醋</spice>
+            <spice count="1/4" unit="茶匙" note="根据个人口味调整">鸡精或味精（可选）"></spice>
+            <spice count="1" unit="克" note="根据个人口味调整">干辣椒段（可选）"></spice>
+            <spice note="根据个人口味调整">油</spice>
+        </spices>
+        <steps>
+            <zone id="1" text="准备材料">
+                <step id="1" text="将土豆去皮，切成细丝，用水冲洗去除表面淀粉，沥干备用"/>
+                <step id="2" text="青椒洗净，去籽后切成丝；如果使用葱花，请切好备用"/>
+            </zone>
+            <zone id="2" text="制作">
+                <step id="3" text="锅里烧油，热锅凉油，先放入干辣椒段爆香（如果使用）"/>
+                <step id="4" text="接着加入土豆丝快速翻炒，直到土豆丝变得透明"/>
+                <step id="5" text="加入青椒丝继续翻炒，直至青椒变软但仍然保持翠绿"/>
+                <step id="6" text="调入盐、醋和鸡精（如果使用），快速翻炒均匀"/>
+                <step id="7" text="最后若准备了葱花，撒入锅中翻炒几下即可出锅"/>
+            </zone>
+        </steps>
+    </instance>
+
+    <instance>
+        <name>蔬菜沙拉</name>
+        <note>单人份</note>
+        <ingredients>
+            <ingredient count="50" unit="克">生菜叶</ingredient>
+            <ingredient count="30" unit="克">黄瓜切片</ingredient>
+            <ingredient count="20" unit="克">樱桃番茄（对半切）</ingredient>
+            <ingredient count="15" unit="克">胡萝卜丝</ingredient>
+            <ingredient count="适量" optional="true">紫甘蓝丝</ingredient>
+            <ingredient count="1" unit="汤匙" optional="true">熟松子或核桃碎</ingredient>
+        </ingredients>
+        <spices>
+            <spice count="1" unit="汤匙">橄榄油</spice>
+            <spice count="1/2" unit="茶匙">红酒醋或白醋</spice>
+            <spice count="1/4" unit="茶匙">盐</spice>
+            <spice count="1/4" unit="茶匙">黑胡椒粉</spice>
+            <spice count="1" unit="茶匙" optional="true">蜂蜜</spice>
+        </spices>
+        <steps>
+            <zone id="1" text="准备材料">
+                <step id="1" text="将生菜叶洗净并沥干"/>
+                <step id="2" text="黄瓜洗净后切成薄片"/>
+                <step id="3" text="樱桃番茄对半切开；胡萝卜去皮后刨成细丝"/>
+                <step id="4" text="如果使用紫甘蓝，请将其切成细丝"/>
+                <step id="5" text="如果准备了坚果，如松子或核桃，请轻轻烤香并捣碎"/>
+            </zone>
+            <zone id="2" text="制作">
+                <step id="6" text="在一个大碗中，混合所有准备好的蔬菜"/>
+                <step id="7" text="在小碗里调制酱汁：加入橄榄油、醋、盐、黑胡椒以及可选的蜂蜜，搅拌均匀"/>
+                <step id="8" text="将调好的酱汁淋在蔬菜上，轻轻拌匀"/>
+                <step id="9" text="最后撒上烤香的坚果碎（如果使用），立即食用以保持新鲜口感"/>
+            </zone>
+        </steps>
+    </instance>
+
+    <instance>
+        <name>水果沙拉</name>
+        <note>单人份</note>
+        <ingredients>
+            <ingredient count="50" unit="克">苹果块（去皮去核）</ingredient>
+            <ingredient count="50" unit="克">香蕉切片</ingredient>
+            <ingredient count="30" unit="克">草莓（对半切或整个）</ingredient>
+            <ingredient count="20" unit="克">葡萄（无籽）</ingredient>
+            <ingredient count="10" unit="克" optional="true">薄荷叶</ingredient>
+            <ingredient count="1" unit="汤匙" optional="true">椰丝</ingredient>
+        </ingredients>
+        <spices>
+            <spice count="1" unit="汤匙">柠檬汁</spice>
+            <spice count="1" unit="茶匙">蜂蜜</spice>
+            <spice count="1/4" unit="茶匙" optional="true">肉桂粉</spice>
+        </spices>
+        <steps>
+            <zone id="1" text="准备材料">
+                <step id="1" text="将苹果去皮去核，并切成小块"/>
+                <step id="2" text="香蕉剥皮后切成薄片"/>
+                <step id="3" text="草莓洗净，根据大小决定是否对半切开"/>
+                <step id="4" text="葡萄洗净，确保没有籽"/>
+                <step id="5" text="如果使用薄荷叶，请洗净并沥干"/>
+            </zone>
+            <zone id="2" text="制作">
+                <step id="6" text="在一个碗中，将所有的水果混合在一起"/>
+                <step id="7" text="在另一个小碗中，将柠檬汁和蜂蜜混合，如果喜欢的话还可以加入一点肉桂粉"/>
+                <step id="8" text="将调好的甜味汁液淋在水果上，轻轻翻拌使水果表面都裹上汁液"/>
+                <step id="9" text="最后撒上椰丝（如果使用），并用薄荷叶装饰"/>
+                <step id="10" text="尽快食用，以享受最佳的新鲜度和风味"/>
+            </zone>
+        </steps>
+    </instance>
+
+    <instance>
+        <name>希腊沙拉</name>
+        <note>单人份</note>
+        <ingredients>
+            <ingredient count="50" unit="克">黄瓜切块</ingredient>
+            <ingredient count="50" unit="克">番茄（不同颜色更好）切块</ingredient>
+            <ingredient count="30" unit="克">红洋葱薄片</ingredient>
+            <ingredient count="1" unit="个">绿橄榄（去核）</ingredient>
+            <ingredient count="20" unit="克">羊乳酪（Feta Cheese）小方块</ingredient>
+            <ingredient count="适量" optional="true">新鲜罗勒叶或欧芹</ingredient>
+        </ingredients>
+        <spices>
+            <spice count="1" unit="汤匙">特级初榨橄榄油</spice>
+            <spice count="1/2" unit="茶匙">红酒醋</spice>
+            <spice count="1/4" unit="茶匙">盐</spice>
+            <spice count="1/4" unit="茶匙">黑胡椒粉</spice>
+            <spice count="1/4" unit="茶匙" optional="true">干牛至（Oregano）</spice>
+        </spices>
+        <steps>
+            <zone id="1" text="准备材料">
+                <step id="1" text="将黄瓜洗净后切成适口大小的块"/>
+                <step id="2" text="番茄洗净后切成块；红洋葱去皮并切成细薄片"/>
+                <step id="3" text="如果使用新鲜香草，请将其洗净并沥干"/>
+            </zone>
+            <zone id="2" text="制作">
+                <step id="4" text="在一个大碗中，混合黄瓜、番茄、红洋葱和去核的绿橄榄"/>
+                <step id="5" text="在小碗里调制酱汁：加入橄榄油、红酒醋、盐、黑胡椒以及可选的干牛至，搅拌均匀"/>
+                <step id="6" text="将调好的酱汁淋在沙拉上，轻轻拌匀"/>
+                <step id="7" text="最后撒上羊乳酪块，并用新鲜罗勒叶或欧芹装饰（如果使用）"/>
+                <step id="8" text="让沙拉稍微静置几分钟以使味道融合，然后立即享用"/>
+            </zone>
+        </steps>
+    </instance>
+</dishes>
