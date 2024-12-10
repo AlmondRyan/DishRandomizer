@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:async';
-import 'pages/settings_page.dart';  // 确保这一行已经存在
+import 'pages/settings_page.dart';
 import 'utils/settings_manager.dart';
 import 'models/dish.dart';
-import 'package:flutter/services.dart'; // 添加这个导入
+import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,15 +22,15 @@ class PrizeWheel extends StatefulWidget {
 }
 
 class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateMixin {
-  final List<String> _cards = [];  // 存储卡片内容
+  final List<String> _cards = [];
   final Random _random = Random();
-  String? _selectedCard;  // 存储被选中的卡片
+  String? _selectedCard;
   late AnimationController _controller;
   late Animation<double> _animation;
   int _selectedIndex = 0;
-  int _selectedCardIndex = -1;  // 选中卡片的索引，初始为-1表示未选中
-  bool _isAnimating = false;  // 添加动画状态标记
-  Timer? _resetTimer;        // 添加定时器
+  int _selectedCardIndex = -1;
+  bool _isAnimating = false;
+  Timer? _resetTimer;
   Map<String, dynamic> _settings = {};
   Dish? _selectedDish;
 
@@ -38,7 +38,7 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     _loadSettings();
-    _refreshData(); // 加载数据
+    _refreshData();
     _controller = AnimationController(
       duration: const Duration(seconds: 5),
       vsync: this,
@@ -57,8 +57,7 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
           _isAnimating = false;
         });
 
-        // 设置20秒后重置选中卡片的状态
-        _resetTimer?.cancel();  // 取消之前的定时器
+        _resetTimer?.cancel();
         _resetTimer = Timer(const Duration(seconds: 20), () {
           setState(() {
             _selectedCard = null;
@@ -73,11 +72,9 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
       final settings = await SettingsManager.loadSettings();
       setState(() {
         _settings = settings;
-        // 根据设置更新状态
         _controller.duration = Duration(seconds: _settings['animationDuration'] ?? 5);
-        // 如果有导入的项目，加载它们
         if (_settings['importedItems'] != null) {
-          _cards.clear(); // 清除现有项目
+          _cards.clear();
           _cards.addAll(List<String>.from(_settings['importedItems']['items'] ?? []));
         }
       });
@@ -93,11 +90,10 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
 
   Future<void> _saveSettings() async {
     try {
-      // 更新设置
       _settings['importedItems'] = {
         'items': _cards,
-        'lastFile': '', // 更新最后导入的文件信息
-        'lastType': '', // 更新最后导入的类型
+        'lastFile': '',
+        'lastType': '',
       };
 
       final success = await SettingsManager.saveSettings(_settings);
@@ -134,27 +130,24 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
     super.dispose();
   }
 
-  // 添加新卡片
   void _addCard(String content) {
     if (content.isNotEmpty) {
       setState(() {
         _cards.add(content);
       });
-      SettingsManager.saveData(_cards); // 保存到 data.json
+      SettingsManager.saveData(_cards);
     }
   }
 
-  // 删除卡片
   void _removeCard(int index) {
     if (index >= 0 && index < _cards.length) {
       setState(() {
         _cards.removeAt(index);
       });
-      SettingsManager.saveData(_cards); // 保存到 data.json
+      SettingsManager.saveData(_cards);
     }
   }
 
-  // 显示没有卡片的提示对话框
   void _showNoCardsDialog() {
     showDialog(
       context: context,
@@ -173,7 +166,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
     );
   }
 
-  // 随机选择卡片（带动画）
   void _selectRandomCard() {
     if (_cards.isEmpty) {
       _showNoCardsDialog();
@@ -187,7 +179,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
     _controller.forward(from: 0.0);
   }
 
-  // 添加显示菜谱对话框的方法
   void _showRecipeDialog(Dish recipe) {
     showDialog(
       context: context,
@@ -328,7 +319,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
     );
   }
 
-  // 计算每个卡片的动画缩放值
   double _calculateScale(int index, double animationValue) {
     if (!_isAnimating && _selectedCard == null) {
       return 1.0;
@@ -360,7 +350,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
     return 1.0;
   }
 
-  // 计算卡片阴影值
   double _calculateElevation(int index, double animationValue) {
     if (!_isAnimating && _selectedCard != null && index == _selectedCardIndex) {
       return 4;
@@ -383,7 +372,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
     return 1;
   }
 
-  // 添加键盘事件处理
   void _handleKeyEvent(RawKeyEvent event) {
     if (event is RawKeyDownEvent) {
       if (event.logicalKey == LogicalKeyboardKey.f5) {
@@ -392,6 +380,7 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
     }
   }
 
+  // Note: I know RawKeyboardListener is deprecated, but it's goes well, I'll let this go.
   @override
   Widget build(BuildContext context) {
     return RawKeyboardListener(
@@ -462,11 +451,9 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
             ),
           ],
         ),
-        // 将原来 Scaffold body 中的内容移到这里
         Expanded(
           child: Column(
             children: [
-              // 添加卡片的输入区域
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -489,7 +476,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
                 ),
               ),
 
-              // 显示选中的卡片
               if (_selectedCard != null)
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
@@ -547,7 +533,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
                   ),
                 ),
 
-              // 显示所有卡片（带动画）
               Expanded(
                 child: AnimatedBuilder(
                   animation: _animation,
@@ -570,7 +555,6 @@ class _PrizeWheelState extends State<PrizeWheel> with SingleTickerProviderStateM
                                   horizontal: 8.0,
                                 ),
                                 child: Card(
-                                  // 使用新的阴影计算方法
                                   elevation: _calculateElevation(index, _animation.value),
                                   child: ListTile(
                                     title: Text(_cards[index]),

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:path/path.dart' as path;
 import 'package:xml/xml.dart';
 import '../models/dish.dart';
-import 'package:flutter/services.dart';
 
 class SettingsManager {
   static const String _appFolderName = 'DishRandomation';
@@ -22,7 +21,6 @@ class SettingsManager {
     }
   }
 
-  // 保存设置
   static Future<bool> saveSettings(Map<String, dynamic> settings) async {
     try {
       final String appDataPath = await _appDataPath;
@@ -35,7 +33,6 @@ class SettingsManager {
     }
   }
 
-  // 保存数据
   static Future<bool> saveData(List<String> items) async {
     try {
       final String appDataPath = await _appDataPath;
@@ -48,7 +45,6 @@ class SettingsManager {
     }
   }
 
-  // 加载设置
   static Future<Map<String, dynamic>> loadSettings() async {
     try {
       final String appDataPath = await _appDataPath;
@@ -64,7 +60,6 @@ class SettingsManager {
     return _getDefaultSettings();
   }
 
-  // 加载数据
   static Future<List<String>> loadData() async {
     try {
       final String appDataPath = await _appDataPath;
@@ -81,7 +76,6 @@ class SettingsManager {
     return [];
   }
 
-  // 修改复制 XML 文件的方法
   static Future<void> copyRecipesXml(String sourcePath) async {
     try {
       final String appDataPath = await _appDataPath;
@@ -100,7 +94,6 @@ class SettingsManager {
     }
   }
 
-  // 修改加载菜谱的方法
   static Future<Dish?> loadRecipe(String recipeName) async {
     try {
       final String appDataPath = await _appDataPath;
@@ -132,7 +125,6 @@ class SettingsManager {
     }
   }
 
-  // 添加解析菜谱的方法
   static Dish _parseRecipeFromXml(XmlElement instance) {
     final name = instance.findElements('name').first.text;
     final note = instance.findElements('note').first.text;

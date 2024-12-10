@@ -15,10 +15,10 @@ class SettingsPage extends StatefulWidget {
   final Function(Map<String, dynamic>) onSettingsChanged;
 
   const SettingsPage({
-    Key? key,
+    super.key,
     required this.settings,
     required this.onSettingsChanged,
-  }) : super(key: key);
+  });
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
@@ -30,7 +30,6 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _autoSave = true;
   String _defaultLanguage = 'English';
   
-  // 代理设置
   bool _enableProxy = false;
   bool _autoDetectProxy = false;
   String _selectedProxyType = 'HTTP';
@@ -42,7 +41,6 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = false;
 
-  // 导入项目
   List<String> _importedItems = [];
   String _lastImportedFile = '';
   String _lastImportType = '';
@@ -103,7 +101,6 @@ class _SettingsPageState extends State<SettingsPage> {
       },
     };
 
-    // 保存设置到文件
     final success = await SettingsManager.saveSettings(settings);
     if (success) {
       widget.onSettingsChanged(settings);
@@ -113,7 +110,6 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  // 添加文件导入方法
   Future<void> _importFile() async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -128,7 +124,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
         switch (extension) {
           case 'xml':
-            // 如果是 XML 文件，先复制到 AppData
             await SettingsManager.copyRecipesXml(file.path);
             items = await _parseXml(file);
             break;
@@ -151,7 +146,6 @@ class _SettingsPageState extends State<SettingsPage> {
           _lastImportType = extension;
         });
 
-        // 保存到 data.json
         final success = await SettingsManager.saveData(items);
         if (success) {
           _showSnackBar('Successfully imported ${items.length} items');
@@ -164,7 +158,6 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  // Excel 解析
   Future<List<String>> _parseExcel(File file) async {
     final bytes = await file.readAsBytes();
     final excel = Excel.decodeBytes(bytes);
@@ -180,7 +173,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return items.where((item) => item.isNotEmpty).toList();
   }
 
-  // CSV 解析
   Future<List<String>> _parseCsv(File file) async {
     final contents = await file.readAsString();
     final rows = const CsvToListConverter().convert(contents);
@@ -191,7 +183,6 @@ class _SettingsPageState extends State<SettingsPage> {
         .toList();
   }
 
-  // XML 解析
   Future<List<String>> _parseXml(File file) async {
     final contents = await file.readAsString();
     final document = XmlDocument.parse(contents);
@@ -201,12 +192,10 @@ class _SettingsPageState extends State<SettingsPage> {
         .toList();
   }
 
-  // 添加详细的菜谱解析方法
   Dish _parseDishFromXml(XmlElement instance) {
     final name = instance.findElements('name').first.text;
     final note = instance.findElements('note').first.text;
 
-    // 解析配料
     final ingredients = instance.findElements('ingredients').first
         .findElements('ingredient')
         .map((ing) => Ingredient(
@@ -217,7 +206,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ))
         .toList();
 
-    // 解析调味料
     final spices = instance.findElements('spices').first
         .findElements('spice')
         .map((spice) => Spice(
@@ -229,7 +217,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ))
         .toList();
 
-    // 解析步骤
     final steps = instance.findElements('steps').first
         .findElements('zone')
         .map((zone) => Zone(
@@ -253,7 +240,6 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  // JSON 解析
   Future<List<String>> _parseJson(File file) async {
     final contents = await file.readAsString();
     final data = json.decode(contents);
@@ -268,7 +254,6 @@ class _SettingsPageState extends State<SettingsPage> {
     throw Exception('Invalid JSON format');
   }
 
-  // 显示提示信息
   void _showSnackBar(String message, {bool isError = false}) {
     if (!mounted) return;
     
@@ -330,7 +315,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
 
-          // 代理设置
           ExpansionTile(
             title: const Text('Proxy Settings'),
             children: [
@@ -438,7 +422,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           ),
 
-          // 数据导入设置
           ExpansionTile(
             title: const Text('Data Import'),
             subtitle: _lastImportedFile.isNotEmpty
@@ -474,7 +457,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         onPressed: () {
                           setState(() {
                             _importedItems.removeAt(index);
-                            _saveAndNotify(); // 删除后保存更改
+                            _saveAndNotify();
                           });
                         },
                       ),
